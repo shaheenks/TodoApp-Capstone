@@ -1,14 +1,16 @@
 import React from "react";
 
+import NavBar from './navBar.jsx';
 import AddTodo from './addTodo';
 import VisibleTodoList from './todoList';
 import Footer from './footer';
+import LoginPage from './loginPage.jsx'
 
 const TodoApp = () => (
-    <div>
-      <AddTodo />
-      <VisibleTodoList />
-      <Footer />
+    <div className="container">
+        <AddTodo />
+        <VisibleTodoList />
+        <Footer />
     </div>
 );
 

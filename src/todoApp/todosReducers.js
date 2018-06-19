@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import filter from 'lodash/filter';
 
 const todo = (state, action) => {
     switch (action.type) {
@@ -24,6 +25,7 @@ const todos = (state=[], action) => {
                 todo(undefined, action)
             ];
         case 'REMOVE_TODO':
+            return filter(state, (o) => action.id != o.id)
         case 'TOGGLE_TODO':
             return state.map((item) => todo(item, action))
         default:
@@ -49,5 +51,7 @@ const todoApp = combineReducers({
 });
 
 module.exports = {
-    todoAppStore: todoApp
+    todoAppStore: todoApp,
+    todos,
+    visibilityFilter
 };

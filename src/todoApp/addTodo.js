@@ -12,12 +12,16 @@ const addTodo = (text) => ({
 let AddTodo = ({dispatch}) => {
   let input;
   return (
+    <div className="input-group mb-3">
     <div>
-      <input ref={node => input = node} />
-      <button onClick={()=>{
+      <input className="form-control" type="text" placeholder="I want to ...." ref={node => input = node} />
+    </div>
+    <div className="input-group-append">
+      <span className="input-group-text" onClick={()=>{
         dispatch(addTodo(input.value));
         input.value='';
-      }}>Add</button>
+      }}>Add</span>
+    </div>
     </div>
   )
 };

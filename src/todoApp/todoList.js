@@ -16,25 +16,30 @@ const getVisibleTodos = (todos, filter) => {
 
 const Todo = ({
     onClick,
+    onRemove,
     completed,
     text
   }) => {
     return (
-      <li
-        onClick={onClick}
-        style={{textDecoration: completed ? 'line-through' : 'none'}}>
+      <li>
+      <span onClick={onClick} style={{textDecoration: completed ? 'line-through' : 'none'}}>
       {text}
+      </span>
+      <span className="pl-5" onClick={onRemove}>
+      X
+      </span>
       </li>
     )
   };
 
 const TodoList = ({
     todos,
-    onTodoClick
+    onTodoClick,
+    onRemove
   }) => {
     return (
       <ul>
-        {todos.map(todo => <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />)}
+        {todos.map(todo => <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} onRemove={()=>onRemove(todo.id)}/>)}
       </ul>
     )
   };
@@ -45,6 +50,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onTodoClick(id) {
       dispatch({type: 'TOGGLE_TODO', id})
+    },
+    onRemove(id) {
+      dispatch({type: 'REMOVE_TODO', id})
     }
 });
 
